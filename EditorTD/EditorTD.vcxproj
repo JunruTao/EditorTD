@@ -19,14 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\EditorTD\box_field.h" />
+    <ClInclude Include="include\EditorTD\ETD_Gui.h" />
+    <ClInclude Include="include\EditorTD\ETD_EditorWidget.h" />
+    <ClInclude Include="include\EditorTD\ETD_Widgets.h" />
     <ClInclude Include="include\EditorTD\config.h" />
     <ClInclude Include="include\EditorTD\drawable.h" />
     <ClInclude Include="include\EditorTD\text_cursor.h" />
     <ClInclude Include="include\EditorTD\utilities.h" />
+    <ClInclude Include="include\EditorTD\util_font_lib.h" />
+    <ClInclude Include="src\EditorTD\util_font_lib.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EditorTD\box_field.cpp" />
+    <ClCompile Include="src\EditorTD\ETD_EditorWidget.cpp" />
+    <ClCompile Include="src\EditorTD\ETD_Widgets.cpp" />
     <ClCompile Include="src\EditorTD\EditorTD.cpp" />
     <ClCompile Include="src\EditorTD\text_cursor.cpp" />
   </ItemGroup>
@@ -84,15 +89,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

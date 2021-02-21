@@ -1,10 +1,8 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
+
 #include "EditorTD/text_cursor.h"
-#include "EditorTD/box_field.h"
 #include "EditorTD/utilities.h"
 #include "EditorTD/config.h"
-
+#include "EditorTD/ETD_Gui.h"
 
 static int min_window_width = 300;
 static int min_window_height = 300;
@@ -17,6 +15,10 @@ int main()
     window.setView(view);
     window.setFramerateLimit(30);
     window.setVerticalSyncEnabled(true);
+
+    //ETD::FontLibrary fonts;
+    TestClass test;
+    Foo();
 
     sf::Text text;
     sf::Font font;
@@ -37,8 +39,8 @@ int main()
 
     auto cursor = ETD::TextCursor(&window);
 
-    auto box1 = ETD::BoxField(&window, sf::FloatRect(0.f, 200.f, 800.f, 400.f));
-    auto box2 = ETD::BoxField(&window, sf::FloatRect(0.f, 0.f, 400.f, 200.f));
+    auto box1 = ETD::Widget(&window, sf::FloatRect(0.f, 200.f, 800.f, 400.f));
+    auto box2 = ETD::Widgets::TextEditor(&window, sf::FloatRect(0.f, 0.f, 400.f, 200.f));
     
 
     while (window.isOpen())
@@ -94,6 +96,7 @@ int main()
                 window.setView(sf::View(visibleArea));
             }
         }
+        test.Call();
         // Clear screen
         text_img.clear();
         text_img.draw(text);

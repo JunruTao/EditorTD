@@ -7,10 +7,9 @@
 #define Col_EDIT_TEXT           255, 255, 255, 255
 #define Col_STATIC_TEXT         187, 187, 187, 255
 
-
 #define FRAME_BLEED_DIST 10
 #define WIDGETS_GAP 4
-#define OUTLINE_WIDTH 3.0f
-#define BEVEL_DIST 5.0f
+#define OUTLINE_WIDTH 3
+#define BEVEL_DIST 5
 
 #endif 

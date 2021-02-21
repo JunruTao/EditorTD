@@ -24,14 +24,26 @@
     <ClInclude Include="include\EditorTD\drawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\EditorTD\box_field.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\EditorTD\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\EditorTD\utilities.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EditorTD\ETD_Widgets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EditorTD\ETD_EditorWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EditorTD\ETD_Gui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EditorTD\util_font_lib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EditorTD\util_font_lib.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -41,8 +53,11 @@
     <ClCompile Include="src\EditorTD\text_cursor.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\EditorTD\box_field.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\EditorTD\ETD_Widgets.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorTD\ETD_EditorWidget.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
