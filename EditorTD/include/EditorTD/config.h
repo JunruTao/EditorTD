@@ -12,4 +12,7 @@
 #define OUTLINE_WIDTH 3
 #define BEVEL_DIST 5
 
+
+#define DEFAUL_FONT "ETD_default_font"
+
 #endif 

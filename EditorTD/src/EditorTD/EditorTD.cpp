@@ -18,16 +18,13 @@ int main()
     window.setVerticalSyncEnabled(true);
 
  
+    ETD::Util::FontLib lib1;
+    lib1.AddFont(DEFAUL_FONT, "font/Nouveau_IBM.ttf");
     sf::Text text;
-    sf::Font font;
-    if (!font.loadFromFile("font/Nouveau_IBM.ttf"))
-    {
-        return 2;
-    }
-    text.setFont(font);
+    text.setFont(*lib1.GetFont(DEFAUL_FONT));
     text.setCharacterSize(18);
 
-    ETD::Util::FontLib foo;
+
     sf::String inStr;
     inStr = "Hi Input";
     text.setString(inStr);
