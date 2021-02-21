@@ -6,6 +6,7 @@
 
 static int min_window_width = 300;
 static int min_window_height = 300;
+
 int main() 
 {
     sf::ContextSettings settings;
@@ -16,10 +17,7 @@ int main()
     window.setFramerateLimit(30);
     window.setVerticalSyncEnabled(true);
 
-    //ETD::FontLibrary fonts;
-    TestClass test;
-    Foo();
-
+ 
     sf::Text text;
     sf::Font font;
     if (!font.loadFromFile("font/Nouveau_IBM.ttf"))
@@ -29,6 +27,7 @@ int main()
     text.setFont(font);
     text.setCharacterSize(18);
 
+    ETD::Util::FontLib foo;
     sf::String inStr;
     inStr = "Hi Input";
     text.setString(inStr);
@@ -96,7 +95,6 @@ int main()
                 window.setView(sf::View(visibleArea));
             }
         }
-        test.Call();
         // Clear screen
         text_img.clear();
         text_img.draw(text);

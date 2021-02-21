@@ -1,35 +1,8 @@
 #include "EditorTD/util_font_lib.h"
-#include "EditorTD/utilities.h"
+using namespace ETD::Util;
 
-//bool ETD::FontLibrary::has_init = false;
-
-//std::map<sf::String, sf::Font> ETD::FontLibrary::fonts;
-
-FontLibrary::FontLibrary()
+FontLib::FontLib() 
 {
-	id = 0;
-	printf("font_int");
+	printf("font lib init");
+	_id = 1;
 }
-
-FontLibrary::~FontLibrary()
-{
-	printf("distory");
-}
-
-
-TestClass::TestClass() 
-{
-	printf("some test class");
-}
-
-void TestClass::Call() 
-{
-	static int i = false;
-	if (!i) 
-	{
-		printf("first call");
-		i = true;
-	}
-}
-
-//sf::Font* ETD::Util::FontLibrary::GetFont(sf::String name){}

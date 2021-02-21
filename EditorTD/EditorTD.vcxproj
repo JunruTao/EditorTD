@@ -27,13 +27,13 @@
     <ClInclude Include="include\EditorTD\text_cursor.h" />
     <ClInclude Include="include\EditorTD\utilities.h" />
     <ClInclude Include="include\EditorTD\util_font_lib.h" />
-    <ClInclude Include="src\EditorTD\util_font_lib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorTD\ETD_EditorWidget.cpp" />
     <ClCompile Include="src\EditorTD\ETD_Widgets.cpp" />
     <ClCompile Include="src\EditorTD\EditorTD.cpp" />
     <ClCompile Include="src\EditorTD\text_cursor.cpp" />
+    <ClCompile Include="src\EditorTD\util_font_lib.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -13,37 +13,49 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Components">
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{4257f664-ce10-4d7e-bab4-9be99e63774d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\components">
+      <UniqueIdentifier>{fa843c6c-b238-437a-af15-b07d2a97d2b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\widgets">
+      <UniqueIdentifier>{88197de4-bf0b-414b-ab6c-09bfb09fa39c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{c55c594f-8f32-40e1-bd0d-04ba5e1a8070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\widget">
+      <UniqueIdentifier>{f3f83ae5-0186-44fa-baed-07f5909ab539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\components">
       <UniqueIdentifier>{b2567254-2a50-4507-a890-6893605affb5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\EditorTD\text_cursor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\EditorTD\drawable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\EditorTD\utilities.h">
+      <Filter>Header Files\util</Filter>
     </ClInclude>
     <ClInclude Include="include\EditorTD\config.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\util</Filter>
     </ClInclude>
-    <ClInclude Include="include\EditorTD\utilities.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\EditorTD\drawable.h">
+      <Filter>Header Files\components</Filter>
     </ClInclude>
-    <ClInclude Include="include\EditorTD\ETD_Widgets.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\EditorTD\text_cursor.h">
+      <Filter>Header Files\components</Filter>
     </ClInclude>
     <ClInclude Include="include\EditorTD\ETD_EditorWidget.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\widgets</Filter>
     </ClInclude>
     <ClInclude Include="include\EditorTD\ETD_Gui.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EditorTD\ETD_Widgets.h">
+      <Filter>Header Files\widgets</Filter>
     </ClInclude>
     <ClInclude Include="include\EditorTD\util_font_lib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EditorTD\util_font_lib.cpp">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Header Files\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -51,13 +63,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\EditorTD\text_cursor.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EditorTD\ETD_Widgets.cpp">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="src\EditorTD\ETD_EditorWidget.cpp">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorTD\ETD_Widgets.cpp">
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorTD\util_font_lib.cpp">
+      <Filter>Source Files\util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
