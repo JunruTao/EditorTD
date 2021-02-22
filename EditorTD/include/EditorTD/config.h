@@ -2,6 +2,11 @@
 #define _CONFIG_H_
 #include <string>
 
+#define ETD_WINDOW_TITLE "Editor TD"
+
+extern unsigned int INIT_WIN_WIDTH;
+extern unsigned int INIT_WIN_HEIGHT;
+
 extern std::string DEFAULT_FONT;
 extern std::string DEFAULT_FONT_PATH;
 

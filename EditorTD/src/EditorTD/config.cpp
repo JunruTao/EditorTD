@@ -10,6 +10,9 @@ float  WIDGETS_GAP = 0.f;
 float  OUTLINE_WIDTH = 0.f;
 float  BEVEL_DIST = 0.f;
 
+unsigned int INIT_WIN_WIDTH = 800;
+unsigned int INIT_WIN_HEIGHT = 600;
+
 bool ETD_configure() 
 {
     std::cout << "[Edtor TD - Configure] __init__ locating config.env" << std::endl;
