@@ -19,7 +19,7 @@ void Widget::Init(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool has_b
 	_winSize = _hwnd->getSize();
 	_toggle_draw_buffer = has_buffer;
 
-	_outline = sf::ConvexShape(12);
+	_outline = sf::ConvexShape(BEVEL_DIST < 0.1 ? 4 : 12);
 	_outline.setFillColor(sf::Color(Col_WIDGET_BACKGROUND));
 	_outline.setOutlineColor(sf::Color(Col_WIDGET_BORDER));
 	_outline.setOutlineThickness(OUTLINE_WIDTH);
@@ -86,21 +86,31 @@ void Widget::UpdateMask()
 
 void Widget::ConstructOutline() 
 {
-	_outline.setPoint(0, sf::Vector2f(_bound.left + OUTLINE_WIDTH + BEVEL_DIST, _bound.top + OUTLINE_WIDTH));
-	_outline.setPoint(1, sf::Vector2f(_bound.left + OUTLINE_WIDTH + (float)(0.3f * BEVEL_DIST), _bound.top + OUTLINE_WIDTH + (float)(0.3f * BEVEL_DIST)));
-	_outline.setPoint(2, sf::Vector2f(_bound.left + OUTLINE_WIDTH, _bound.top + OUTLINE_WIDTH + BEVEL_DIST));
-	
-	_outline.setPoint(3, sf::Vector2f(_bound.left + OUTLINE_WIDTH, _bound.top + _bound.height - OUTLINE_WIDTH - BEVEL_DIST));
-	_outline.setPoint(4, sf::Vector2f(_bound.left + OUTLINE_WIDTH + (float)(0.3 * BEVEL_DIST), _bound.top + _bound.height - OUTLINE_WIDTH - (float)(0.3 * BEVEL_DIST)));
-	_outline.setPoint(5, sf::Vector2f(_bound.left + OUTLINE_WIDTH + BEVEL_DIST, _bound.top + _bound.height - OUTLINE_WIDTH));
+	if (BEVEL_DIST < 0.1)
+	{
+		_outline.setPoint(0, sf::Vector2f(_bound.left + OUTLINE_WIDTH, _bound.top + OUTLINE_WIDTH));
+		_outline.setPoint(1, sf::Vector2f(_bound.left + OUTLINE_WIDTH, _bound.top + _bound.height - OUTLINE_WIDTH));
+		_outline.setPoint(2, sf::Vector2f(_bound.left - OUTLINE_WIDTH + _bound.width, _bound.top + _bound.height - OUTLINE_WIDTH));
+		_outline.setPoint(3, sf::Vector2f(_bound.left - OUTLINE_WIDTH + _bound.width, _bound.top + OUTLINE_WIDTH));
+	}
+	else
+	{
+		_outline.setPoint(0, sf::Vector2f(_bound.left + OUTLINE_WIDTH + BEVEL_DIST, _bound.top + OUTLINE_WIDTH));
+		_outline.setPoint(1, sf::Vector2f(_bound.left + OUTLINE_WIDTH + (float)(0.3f * BEVEL_DIST), _bound.top + OUTLINE_WIDTH + (float)(0.3f * BEVEL_DIST)));
+		_outline.setPoint(2, sf::Vector2f(_bound.left + OUTLINE_WIDTH, _bound.top + OUTLINE_WIDTH + BEVEL_DIST));
 
-	_outline.setPoint(6, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH - BEVEL_DIST, _bound.top + _bound.height - OUTLINE_WIDTH));
-	_outline.setPoint(7, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH - (float)(0.3 * BEVEL_DIST), _bound.top + _bound.height - OUTLINE_WIDTH - (float)(0.3 * BEVEL_DIST)));
-	_outline.setPoint(8, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH, _bound.top + _bound.height - OUTLINE_WIDTH - BEVEL_DIST));
+		_outline.setPoint(3, sf::Vector2f(_bound.left + OUTLINE_WIDTH, _bound.top + _bound.height - OUTLINE_WIDTH - BEVEL_DIST));
+		_outline.setPoint(4, sf::Vector2f(_bound.left + OUTLINE_WIDTH + (float)(0.3 * BEVEL_DIST), _bound.top + _bound.height - OUTLINE_WIDTH - (float)(0.3 * BEVEL_DIST)));
+		_outline.setPoint(5, sf::Vector2f(_bound.left + OUTLINE_WIDTH + BEVEL_DIST, _bound.top + _bound.height - OUTLINE_WIDTH));
 
-	_outline.setPoint(9, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH, _bound.top + OUTLINE_WIDTH + BEVEL_DIST));
-	_outline.setPoint(10, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH - (float)(0.3 * BEVEL_DIST), _bound.top + OUTLINE_WIDTH + (float)(0.3 * BEVEL_DIST)));
-	_outline.setPoint(11, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH - BEVEL_DIST, _bound.top + OUTLINE_WIDTH));
+		_outline.setPoint(6, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH - BEVEL_DIST, _bound.top + _bound.height - OUTLINE_WIDTH));
+		_outline.setPoint(7, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH - (float)(0.3 * BEVEL_DIST), _bound.top + _bound.height - OUTLINE_WIDTH - (float)(0.3 * BEVEL_DIST)));
+		_outline.setPoint(8, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH, _bound.top + _bound.height - OUTLINE_WIDTH - BEVEL_DIST));
+
+		_outline.setPoint(9, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH, _bound.top + OUTLINE_WIDTH + BEVEL_DIST));
+		_outline.setPoint(10, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH - (float)(0.3 * BEVEL_DIST), _bound.top + OUTLINE_WIDTH + (float)(0.3 * BEVEL_DIST)));
+		_outline.setPoint(11, sf::Vector2f(_bound.left + _bound.width - OUTLINE_WIDTH - BEVEL_DIST, _bound.top + OUTLINE_WIDTH));
+	}
 }
 
 void Widget::Draw() const

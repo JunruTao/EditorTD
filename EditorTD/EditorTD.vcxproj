@@ -27,6 +27,7 @@
     <ClInclude Include="include\EditorTD\text_cursor.h" />
     <ClInclude Include="include\EditorTD\utilities.h" />
     <ClInclude Include="include\EditorTD\util_font_lib.h" />
+    <ClInclude Include="include\EditorTD\util_system.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorTD\config.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="src\EditorTD\EditorTD.cpp" />
     <ClCompile Include="src\EditorTD\text_cursor.cpp" />
     <ClCompile Include="src\EditorTD\util_font_lib.cpp" />
+    <ClCompile Include="src\EditorTD\util_system.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

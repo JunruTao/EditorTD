@@ -57,6 +57,9 @@
     <ClInclude Include="include\EditorTD\util_font_lib.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
+    <ClInclude Include="include\EditorTD\util_system.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorTD\EditorTD.cpp">
@@ -75,6 +78,9 @@
       <Filter>Source Files\util</Filter>
     </ClCompile>
     <ClCompile Include="src\EditorTD\config.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorTD\util_system.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,7 +5,7 @@
 
 std::string DEFAULT_FONT = "Null";
 std::string DEFAULT_FONT_PATH = "Null_path";
-float FRAME_BLEED_DIST = 0.f;
+int FRAME_BLEED_DIST = 0;
 float  WIDGETS_GAP = 0.f;
 float  OUTLINE_WIDTH = 0.f;
 float  BEVEL_DIST = 0.f;
@@ -37,7 +37,7 @@ bool ETD_configure()
             }
             else if (key == "FRAME_BLEED_DIST")
             {
-                FRAME_BLEED_DIST = std::stof(value);
+                FRAME_BLEED_DIST = std::stoi(value);
                 continue;
             }
             else if (key == "WIDGETS_GAP")

@@ -11,7 +11,7 @@ extern std::string DEFAULT_FONT_PATH;
 #define Col_EDIT_TEXT           255, 255, 255, 255
 #define Col_STATIC_TEXT         187, 187, 187, 255
 
-extern float FRAME_BLEED_DIST;
+extern int FRAME_BLEED_DIST;
 extern float  WIDGETS_GAP;
 extern float  OUTLINE_WIDTH;
 extern float  BEVEL_DIST;

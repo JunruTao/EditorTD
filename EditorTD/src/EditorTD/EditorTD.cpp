@@ -1,6 +1,7 @@
 #include "EditorTD/text_cursor.h"
 #include "EditorTD/utilities.h"
 #include "EditorTD/config.h"
+#include "EditorTD/util_system.h"
 #include "EditorTD/ETD_Gui.h"
 
 static int min_window_width = 300;
@@ -97,7 +98,7 @@ int main()
         text_img.draw(text);
         text_img.display();
         
-        window.clear(sf::Color(Col_SREEN_BACKGROUND));
+        window.clear(sf::Color::Transparent);
         sf::Sprite spr(text_img.getTexture());
         window.draw(spr);
 
