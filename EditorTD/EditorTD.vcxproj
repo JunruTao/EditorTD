@@ -29,6 +29,7 @@
     <ClInclude Include="include\EditorTD\util_font_lib.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EditorTD\config.cpp" />
     <ClCompile Include="src\EditorTD\ETD_EditorWidget.cpp" />
     <ClCompile Include="src\EditorTD\ETD_Widgets.cpp" />
     <ClCompile Include="src\EditorTD\EditorTD.cpp" />

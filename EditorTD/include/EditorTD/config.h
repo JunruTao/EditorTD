@@ -1,5 +1,9 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
+#include <string>
+
+extern std::string DEFAULT_FONT;
+extern std::string DEFAULT_FONT_PATH;
 
 #define Col_SREEN_BACKGROUND    40,  40,  40,  255
 #define Col_WIDGET_BACKGROUND   70,  70,  70,  255
@@ -7,12 +11,12 @@
 #define Col_EDIT_TEXT           255, 255, 255, 255
 #define Col_STATIC_TEXT         187, 187, 187, 255
 
-#define FRAME_BLEED_DIST 10
-#define WIDGETS_GAP 4
-#define OUTLINE_WIDTH 3
-#define BEVEL_DIST 5
+extern float FRAME_BLEED_DIST;
+extern float  WIDGETS_GAP;
+extern float  OUTLINE_WIDTH;
+extern float  BEVEL_DIST;
 
 
-#define DEFAUL_FONT "ETD_default_font"
+extern bool ETD_configure();
 
 #endif 

@@ -1,4 +1,3 @@
-
 #include "EditorTD/text_cursor.h"
 #include "EditorTD/utilities.h"
 #include "EditorTD/config.h"
@@ -9,6 +8,7 @@ static int min_window_height = 300;
 
 int main() 
 {
+    ETD_configure();
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window", sf::Style::Default, settings);
@@ -19,9 +19,9 @@ int main()
 
  
     ETD::Util::FontLib lib1;
-    lib1.AddFont(DEFAUL_FONT, "font/Nouveau_IBM.ttf");
+    lib1.AddFont(DEFAULT_FONT, DEFAULT_FONT_PATH);
     sf::Text text;
-    text.setFont(*lib1.GetFont(DEFAUL_FONT));
+    text.setFont(*lib1.GetFont(DEFAULT_FONT));
     text.setCharacterSize(18);
 
 

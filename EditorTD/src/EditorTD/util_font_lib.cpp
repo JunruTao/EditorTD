@@ -13,8 +13,8 @@ FontLib::FontLib()
 {
 	if (!has_init)
 	{
-		std::cout << "ETD::Util::FontLib Init..." << std::endl;
-		AddFont(DEFAUL_FONT, "font/Nouveau_IBM.ttf");
+		std::cout << "[ETD::Util::FontLib]Font Library Init" << std::endl;
+		AddFont(DEFAULT_FONT, DEFAULT_FONT_PATH);
 		has_init = true;
 	}
 }
@@ -27,7 +27,7 @@ void FontLib::AddFont(FKey name, sf::String font_PATH)
 	{
 		std::cout
 			<<"\n [ETD::Util::FontLib]: Font's name has exists in the library."
-			<<"\n....Double check the duplicates of [ " 
+			<<"\n ------Double check the duplicates of [ " 
 			<< std::string(name) 
 			<< " ]\n -Status: [Font Not Loaded]"<<std::endl;
 	}
@@ -45,7 +45,7 @@ void FontLib::AddFont(FKey name, sf::String font_PATH)
 		}
 		else
 		{
-			std::cout << "-Status: [Success] - continue..."<<std::endl;
+			std::cout << "-Status: [Success] - continue=>>"<<std::endl;
 			fonts.insert(std::pair<FKey, Font>(name, font));
 		}
 	}
