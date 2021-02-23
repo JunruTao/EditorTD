@@ -28,9 +28,6 @@
     <Filter Include="Source Files\widget">
       <UniqueIdentifier>{f3f83ae5-0186-44fa-baed-07f5909ab539}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\components">
-      <UniqueIdentifier>{b2567254-2a50-4507-a890-6893605affb5}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\EditorTD\utilities.h">
@@ -40,9 +37,6 @@
       <Filter>Header Files\util</Filter>
     </ClInclude>
     <ClInclude Include="include\EditorTD\drawable.h">
-      <Filter>Header Files\components</Filter>
-    </ClInclude>
-    <ClInclude Include="include\EditorTD\text_cursor.h">
       <Filter>Header Files\components</Filter>
     </ClInclude>
     <ClInclude Include="include\EditorTD\ETD_EditorWidget.h">
@@ -64,9 +58,6 @@
   <ItemGroup>
     <ClCompile Include="src\EditorTD\EditorTD.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EditorTD\text_cursor.cpp">
-      <Filter>Source Files\components</Filter>
     </ClCompile>
     <ClCompile Include="src\EditorTD\ETD_EditorWidget.cpp">
       <Filter>Source Files\widget</Filter>

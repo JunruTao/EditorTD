@@ -2,7 +2,6 @@
 #define _ETD_WIDGETS_H_
 #include "EditorTD/utilities.h"
 #include "EditorTD/drawable.h"
-#include "EditorTD/text_cursor.h"
 
 namespace ETD 
 {

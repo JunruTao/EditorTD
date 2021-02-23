@@ -1,4 +1,3 @@
-#include "EditorTD/text_cursor.h"
 #include "EditorTD/utilities.h"
 #include "EditorTD/config.h"
 #include "EditorTD/util_system.h"
@@ -10,8 +9,6 @@ static int min_window_height = 300;
 int main() 
 {
     sf::RenderWindow* window = ETD::InitWindow();
-    auto cursor = ETD::TextCursor(window);
-
     auto box2 = ETD::Widget(window, sf::FloatRect(0.f, 0.f, 400.f, 200.f));
     auto box1 = ETD::Widgets::TextEditor(window, sf::FloatRect(0.f, 200.f, 800.f, 400.f));
     
@@ -30,12 +27,6 @@ int main()
             }
             box1.Update(&event);
             box2.Update(&event);
-            if (event.type == sf::Event::MouseMoved) 
-            {
-                sf::Vector2f pos = sf::Vector2f(sf::Mouse::getPosition(*window));
-                cursor.Update(pos);
-                // text.setOrigin(-pos);
-            }
             if (event.type == sf::Event::Resized)
             {
                 // update the view to the new size of the window
@@ -56,7 +47,6 @@ int main()
 
         box1.Draw();
         box2.Draw();
-        cursor.Draw();
 
         // Update the window
         window->display();
