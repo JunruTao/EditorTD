@@ -12,27 +12,35 @@ namespace ETD
 		Widget(sf::RenderWindow* hwnd, const sf::FloatRect& bound);
 		Widget();
 		~Widget();
-		void Draw() const override;
+		void Draw() override;
 		void Update(sf::Event* event);
 	protected:
 		void Resize(sf::Event* event); //update _bound
 		void UpdateMask(); //using _bound to shrink and transform _sprite
 		void ConstructOutline(); //using _bound to expand and construct _convexShape
-		sf::Texture CacheTexture(); //update the buffer only there is an update
+		void CacheTexture(); //update the buffer only there is an update
+		sf::Vector2i GetClientPivot_i() const;
+		sf::Vector2f GetClientPivot_f() const;
 
 		//Call it in constructor if inherit
 		void Init(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool has_buffer);
-		//Overload if inherit
-		void UserUpdate(sf::Event* event); //Allow the child the to update to this.
-		//Overload if inherit
-		void DrawField(sf::RenderTexture* _buffer_renderer);//Allow the child the to draw to this.
+		//Override if inherit
+		virtual void UserUpdate(sf::Event* event); //Allow the child the to update to this.
+		//Override if inherit
+		virtual void BufferDrawField();//Allow the child the to draw buffers to this.(__buffer_renderer.draw(..))
+		//Override if inherit
+		virtual void ExtraDraw();//Allow the child the to draw to this.
 		//Set to True if inherit and using it.
 		bool _toggle_draw_buffer;
 
 		//bounding region
 		sf::FloatRect _bound;
 		sf::Vector2u _winSize;
+		//child. translate value into _mask_offset_x/y
 		sf::IntRect _mask;
+		float _mask_offset_x;
+		float _mask_offset_y;
+
 		sf::Texture _buffer;
 		//outline convex
 		sf::ConvexShape _outline;

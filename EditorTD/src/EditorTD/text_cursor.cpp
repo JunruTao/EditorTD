@@ -12,7 +12,7 @@ TextCursor::TextCursor(sf::RenderWindow* hwnd)
 
 TextCursor::~TextCursor() {}
 
-void TextCursor::Draw() const
+void TextCursor::Draw()
 {
 	_hwnd->draw(_shape);
 }

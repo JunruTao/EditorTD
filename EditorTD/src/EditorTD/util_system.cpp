@@ -20,7 +20,10 @@ void ETD_MakeTransparentWindow(sf::RenderWindow* window, bool toggle, UINT8 alph
 sf::RenderWindow* ETD::InitWindow() 
 {
 	//Configuration, loading configuration variables.
-	ETD_configure();
+	if (!ETD::Config::Configure()) 
+	{
+		throw std::runtime_error("[ETD::InitWindow] Failed to configure.");
+	}
 
 	//window context setting.
 	sf::ContextSettings settings;
@@ -33,7 +36,7 @@ sf::RenderWindow* ETD::InitWindow()
 		throw std::runtime_error("[ETD::InitWindow] Failed to create window.");
 	}
 
-	std::cout << "[ETD::InitWindow] - Status: [Success], registed window on heap at:" << static_cast<void*>(window) << std::endl;
+	std::cout << "[ETD::InitWindow] - Status: [Success], registed window on heap at:0x" << (void*)(window) << std::endl;
 	//working with view. so that the geometries won't be stretched.
 	sf::View view(sf::FloatRect(0, 0, (float)INIT_WIN_WIDTH, (float)INIT_WIN_HEIGHT));
 	window->setView(view);
@@ -44,6 +47,6 @@ sf::RenderWindow* ETD::InitWindow()
 
 void ETD::FreeWindow(sf::RenderWindow* &hwnd) 
 {
-	std::cout << "[ETD::FreeWindow] delete window on heap at:" << static_cast<void*>(hwnd) << std::endl;
+	std::cout << "[ETD::FreeWindow] delete window on heap at:0x" << (void*)(hwnd) << std::endl;
 	delete hwnd;
 }

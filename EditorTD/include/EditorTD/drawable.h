@@ -8,7 +8,7 @@ namespace ETD
 	public:
 		Drawable() {};
 		virtual ~Drawable() {};
-		virtual void Draw() const = 0;
+		virtual void Draw() = 0;
 	};
 }
 

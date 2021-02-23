@@ -24,8 +24,8 @@ void Widget::Init(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool has_b
 	_outline.setOutlineColor(sf::Color(Col_WIDGET_BORDER));
 	_outline.setOutlineThickness(OUTLINE_WIDTH);
 	_mask = sf::IntRect(0, 0, (int)_bound.width - FRAME_BLEED_DIST * 2, (int)_bound.height - FRAME_BLEED_DIST * 2);
-
-	_buffer = CacheTexture();
+	_mask_offset_x = 0.f;
+	_mask_offset_y = 0.f;
 
 	UpdateMask();
 	ConstructOutline();
@@ -46,16 +46,12 @@ Widget::~Widget()
 
 void Widget::Update(sf::Event* event) 
 {
-	switch (event->type)
-	{
-	case sf::Event::Resized:
+	if (event->type == sf::Event::Resized) 
 	{
 		Resize(event);
-		break;
 	}
-	default:
-		break;
-	}
+	this->UserUpdate(event);
+	CacheTexture();
 }
 
 void Widget::Resize(sf::Event* event) 
@@ -67,13 +63,12 @@ void Widget::Resize(sf::Event* event)
 	_bound.width *= propX;
 	_bound.top *= propY;
 	_bound.height *= propY;
-	if (_toggle_draw_buffer) 
-	{
-		_buffer = CacheTexture();
-	}
+
 	UserUpdate(event);
 	UpdateMask();
 	ConstructOutline();
+
+	CacheTexture();
 
 	_winSize = new_win_size;
 }
@@ -113,7 +108,7 @@ void Widget::ConstructOutline()
 	}
 }
 
-void Widget::Draw() const
+void Widget::Draw()
 {
 	//Drawing the outline
 	_hwnd->draw(_outline);
@@ -122,32 +117,44 @@ void Widget::Draw() const
 	{
 		sf::Sprite spr(_buffer);
 		spr.setTextureRect(_mask);
-		spr.setPosition(_bound.left + FRAME_BLEED_DIST, _bound.top + FRAME_BLEED_DIST);
+		spr.setPosition(
+			_bound.left + FRAME_BLEED_DIST,
+			_bound.top + FRAME_BLEED_DIST
+		);
 		_hwnd->draw(spr);
 	}
+
+	ExtraDraw();
 }
 
-sf::Texture Widget::CacheTexture()
+void Widget::CacheTexture()
 {
 	if (_toggle_draw_buffer) 
 	{
 		_buffer_renderer.create(_mask.width, _mask.height);
-		_buffer_renderer.clear(sf::Color(Col_STATIC_TEXT));
+		_buffer_renderer.clear(sf::Color::Black);
 		//Buffer's Draw call here..
-		this->DrawField(&_buffer_renderer);
+		this->BufferDrawField();
 		_buffer_renderer.display();
-		return _buffer_renderer.getTexture();
-	}
-	else 
-	{
-		return sf::Texture();
+		_buffer = _buffer_renderer.getTexture();
 	}
 }
 
+
+sf::Vector2i Widget::GetClientPivot_i() const
+{
+	return sf::Vector2i(_mask.left, _mask.top);
+}
+
+sf::Vector2f Widget::GetClientPivot_f() const
+{
+	return sf::Vector2f((float)_mask.left, (float)_mask.top);
+}
 
 /// <summary>
 /// Functions for children to overload:
 /// </summary>
 
 void Widget::UserUpdate(sf::Event* event) {}
-void Widget::DrawField(sf::RenderTexture* _buffer_renderer) {}
+void Widget::BufferDrawField() { /*_buffer_renderer.draw(...);*/ }
+void Widget::ExtraDraw() { /*_hwnd->draw(...);*/ }

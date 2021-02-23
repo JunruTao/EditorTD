@@ -14,7 +14,7 @@ namespace ETD
 	public:
 		TextCursor(sf::RenderWindow* hwnd);
 		~TextCursor();
-		void Draw()const override;
+		void Draw() override;
 		void Update(const sf::Vector2f& location);
 	private:
 		sf::RectangleShape _shape;

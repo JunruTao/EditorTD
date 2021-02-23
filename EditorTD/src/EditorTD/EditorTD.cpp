@@ -10,26 +10,10 @@ static int min_window_height = 300;
 int main() 
 {
     sf::RenderWindow* window = ETD::InitWindow();
- 
-    ETD::Util::FontLib lib1;
-    lib1.AddFont(DEFAULT_FONT, DEFAULT_FONT_PATH);
-    sf::Text text;
-    text.setFont(*lib1.GetFont(DEFAULT_FONT));
-    text.setCharacterSize(18);
-
-
-    sf::String inStr;
-    inStr = "Hi Input";
-    text.setString(inStr);
-    text.setLineSpacing(1);
-
-    sf::RenderTexture text_img;
-    text_img.create(400, 300);
-
     auto cursor = ETD::TextCursor(window);
 
-    auto box1 = ETD::Widget(window, sf::FloatRect(0.f, 200.f, 800.f, 400.f));
-    auto box2 = ETD::Widgets::TextEditor(window, sf::FloatRect(0.f, 0.f, 400.f, 200.f));
+    auto box2 = ETD::Widget(window, sf::FloatRect(0.f, 0.f, 400.f, 200.f));
+    auto box1 = ETD::Widgets::TextEditor(window, sf::FloatRect(0.f, 200.f, 800.f, 400.f));
     
 
     while (window->isOpen())
@@ -43,24 +27,6 @@ int main()
             {
                 window->close();
                 break;
-            }
-            if (event.type == sf::Event::TextEntered)
-            {
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
-                {
-                    if (!inStr.isEmpty()) inStr.erase(inStr.getSize() - 1);
-                    text.setString(inStr);
-                }
-                else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-                {
-                    inStr += "\n";
-                    text.setString(inStr);
-                }
-                else
-                {
-                    inStr += event.text.unicode;
-                    text.setString(inStr);
-                }
             }
             box1.Update(&event);
             box2.Update(&event);
@@ -85,14 +51,8 @@ int main()
                 window->setView(sf::View(visibleArea));
             }
         }
-        // Clear screen
-        text_img.clear();
-        text_img.draw(text);
-        text_img.display();
         
-        window->clear(sf::Color::Transparent);
-        sf::Sprite spr(text_img.getTexture());
-        window->draw(spr);
+        window->clear(sf::Color::Black);
 
         box1.Draw();
         box2.Draw();
