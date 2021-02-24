@@ -36,10 +36,18 @@ namespace ETD
 
 		private:
 			void Update_TypingOffset();
+			void Update_InsertionPoint(bool dir); //foward or backward;
+			void Update_InsertionPoint(); //auto update to the last point;
+			void Update_InsertionPoint_Enter(); //auto update to the last point;
+			void Set_CursorLocation();
+			float Get_LetterDistance();
 			
 			sf::String _text_string;
 			sf::Text _text_object;
 			ETD::Util::FontLib* _fontlib;
+
+			int _insertion_point;
+			sf::RectangleShape _cursor_geo;
 		};
 	}
 }
