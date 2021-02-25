@@ -41,18 +41,21 @@ ETD::Widgets::TextEditor::TextEditor(sf::RenderWindow* hwnd, const sf::FloatRect
 
 	-4. `sf::IntRec _mask` stores the client region for drawing the buffer.
 	-4.1 if want to move the text region, simply update _mask_offset_x, and y.
+
+	-5 in extra draw calls, must set postion:
+			_bound.left + FRAME_BLEED_DIST,
+			_bound.top + FRAME_BLEED_DIST
 */
 
 
 void ETD::Widgets::TextEditor::ExtraDraw() 
 {
-	
+	_hwnd->draw(_cursor_geo);
 }
 
 void ETD::Widgets::TextEditor::BufferDrawField()
 {
 	_buffer_renderer.draw(_text_object);
-	_buffer_renderer.draw(_cursor_geo);
 }
 
 void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
@@ -69,7 +72,6 @@ void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		Update_InsertionPoint(false);
-		std::cout << _insertion_point << std::endl;
 		//_mask_offset_x += 9;
 		//_mask_offset_x = (float)fmin(0, _mask_offset_x);
 		//_text_object.setPosition(_mask_offset_x, _mask_offset_y);
@@ -80,7 +82,10 @@ void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
 		{
-			if (!_text_string.isEmpty()) _text_string.erase(_insertion_point);
+			if (!_text_string.isEmpty()) 
+			{
+				_text_string.erase(_insertion_point); 
+			}
 			_text_object.setString(_text_string);
 			
 			Update_TypingOffset();
@@ -101,6 +106,7 @@ void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
 			//Explicit setting enter->
 			_mask_offset_x = 0;
 			_text_object.setPosition(_mask_offset_x, _mask_offset_y);
+
 			Update_InsertionPoint_Enter();
 		}
 		else
@@ -138,7 +144,6 @@ void ETD::Widgets::TextEditor::Update_TypingOffset()
 		);
 		_text_object.setPosition(_mask_offset_x, _mask_offset_y);
 	}
-
 }
 
 void ETD::Widgets::TextEditor::Update_InsertionPoint(bool dir) 
@@ -157,18 +162,26 @@ void ETD::Widgets::TextEditor::Update_InsertionPoint()
 
 void ETD::Widgets::TextEditor::Update_InsertionPoint_Enter()
 {
-	//BUG here
-	_insertion_point += 2;
-	_insertion_point = (int)fmin(_insertion_point, _text_string.getSize() - 1);
-	_insertion_point = (int)fmax(_insertion_point, 0);
-	sf::Vector2f loc = _text_object.findCharacterPos(_insertion_point);
-
-	if (_insertion_point == _text_string.getSize() - 1) {
-		loc.x = 0;
-		loc.y += _text_object.getCharacterSize() + _text_object.getLineSpacing();
-	}
 	
-	_cursor_geo.setPosition(loc);
+	sf::Vector2f loc;
+
+	if (_insertion_point == _text_string.getSize() - 1 || _insertion_point == -1) {
+		_insertion_point += 2;
+		_insertion_point = (int)fmin(_insertion_point, _text_string.getSize() - 1);
+		_insertion_point = (int)fmax(_insertion_point, 0);
+	}
+	else 
+	{
+		_insertion_point += 1;
+	}
+	loc = _text_object.findCharacterPos(_insertion_point);
+	loc.x = 0;
+	loc.y += _text_object.getCharacterSize() + _text_object.getLineSpacing();
+	
+	_cursor_geo.setPosition(
+		loc.x + _bound.left + FRAME_BLEED_DIST,
+		loc.y + _bound.top + FRAME_BLEED_DIST
+	);
 }
 
 void ETD::Widgets::TextEditor::Set_CursorLocation() 
@@ -176,15 +189,28 @@ void ETD::Widgets::TextEditor::Set_CursorLocation()
 	sf::Vector2f loc;
 	if (_insertion_point >= 0)
 	{
-		loc = _text_object.findCharacterPos(_insertion_point);
-		loc.x += Get_LetterDistance();
+		//[2021.2.25] Solution to detecting a \n new line.
+		if (std::string(_text_string.substring(_insertion_point, 1)).find("\n") != std::string::npos) 
+		{
+			loc = _text_object.findCharacterPos(_insertion_point);
+			loc.x = 0;
+			loc.y += _text_object.getCharacterSize() + _text_object.getLineSpacing();
+		}
+		else
+		{
+			loc = _text_object.findCharacterPos(_insertion_point);
+			loc.x += Get_LetterDistance();
+		}
 	}
 	else 
 	{
 		loc.y = 0;
 		loc.x = 0;
 	}
-	_cursor_geo.setPosition(loc);
+	_cursor_geo.setPosition(
+		loc.x + _bound.left + FRAME_BLEED_DIST,
+		loc.y + _bound.top + FRAME_BLEED_DIST
+	);
 }
 
 
@@ -193,7 +219,16 @@ float ETD::Widgets::TextEditor::Get_LetterDistance()
 {
 	if (_text_string.getSize() >= 2)
 	{
-		return _text_object.findCharacterPos(_text_string.getSize() - 1).x - _text_object.findCharacterPos(_text_string.getSize() - 2).x;
+		//[2020.2.25] Junru Tao
+		//*This is a trick that I have to introduce. Because SMFL can't really give me 
+		//the correct location of the /n location, therefore use an absolute test to
+		//return the distance so that it will make sure that is measuring 2 actually letters
+		_text_string += "ab";
+		_text_object.setString(_text_string);
+		float dist = _text_object.findCharacterPos(_text_string.getSize() - 1).x - _text_object.findCharacterPos(_text_string.getSize() - 2).x;
+		_text_string.erase(_text_string.getSize()-2,2);
+		_text_object.setString(_text_string);
+		return dist;
 	}
 	else if (_text_string.getSize() == 1)
 	{

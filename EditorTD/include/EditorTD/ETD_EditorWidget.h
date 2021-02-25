@@ -47,6 +47,7 @@ namespace ETD
 			ETD::Util::FontLib* _fontlib;
 
 			int _insertion_point;
+			float _letter_dist;
 			sf::RectangleShape _cursor_geo;
 		};
 	}
