@@ -63,6 +63,7 @@ void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		Update_InsertionPoint(true);
+		Update_TypingOffset();
 		//Copy to moving.
 		//_mask_offset_x -= 9;
 		//_mask_offset_x = (float)fmax(_mask.width -_text_object.getLocalBounds().width - _text_object.getLetterSpacing(), _mask_offset_x);
@@ -72,22 +73,22 @@ void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		Update_InsertionPoint(false);
+		Update_TypingOffset();
 		//_mask_offset_x += 9;
 		//_mask_offset_x = (float)fmin(0, _mask_offset_x);
 		//_text_object.setPosition(_mask_offset_x, _mask_offset_y);
 		return;
 	}
-
 	if (event->type == sf::Event::TextEntered)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace))
 		{
-			if (!_text_string.isEmpty()) 
+			if (!_text_string.isEmpty() && _insertion_point != -1)
 			{
-				_text_string.erase(_insertion_point); 
+				_text_string.erase(_insertion_point);
 			}
 			_text_object.setString(_text_string);
-			
+
 			Update_TypingOffset();
 			Update_InsertionPoint(false);
 		}
@@ -102,7 +103,7 @@ void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
 				_text_string.insert(_insertion_point + 1, "\n");
 			}
 			_text_object.setString(_text_string);
-			
+
 			//Explicit setting enter->
 			_mask_offset_x = 0;
 			_text_object.setPosition(_mask_offset_x, _mask_offset_y);
@@ -111,7 +112,7 @@ void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
 		}
 		else
 		{
-			if (_insertion_point == _text_string.getSize()-1 ||  _text_string.getSize() == 0)
+			if (_insertion_point == _text_string.getSize() - 1 || _text_string.getSize() == 0)
 			{
 				_text_string += event->text.unicode;
 				Update_InsertionPoint();
@@ -121,12 +122,13 @@ void ETD::Widgets::TextEditor::UserUpdate(sf::Event* event)
 				_text_string.insert(_insertion_point + 1, event->text.unicode);
 				Update_InsertionPoint(true);
 			}
-			
+
 			_text_object.setString(_text_string);
 			Update_TypingOffset();
 			Set_CursorLocation();
 		}
 	}
+
 	//if (_text_object.getLocalBounds().width + _text_object.getLetterSpacing() > _mask.width) {
 
 	//}
@@ -139,7 +141,7 @@ void ETD::Widgets::TextEditor::Update_TypingOffset()
 	{
 		_mask_offset_x = (float)fmin(0,
 			_mask.width -
-			_text_object.findCharacterPos(_text_string.getSize() - 1).x - Get_LetterDistance()*2
+			_text_object.findCharacterPos(_insertion_point).x - Get_LetterDistance()*2
 			+ _text_object.getGlobalBounds().left
 		);
 		_text_object.setPosition(_mask_offset_x, _mask_offset_y);
