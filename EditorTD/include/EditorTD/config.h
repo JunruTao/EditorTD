@@ -9,7 +9,7 @@
 extern unsigned int INIT_WIN_WIDTH;
 extern unsigned int INIT_WIN_HEIGHT;
 extern unsigned int INIT_WIN_WIDTH_MIN;
-extern unsigned int INIT_WIN_HEIGHT_MAX;
+extern unsigned int INIT_WIN_HEIGHT_MIN;
 
 //Editor default font properties
 extern std::string DEFAULT_FONT;

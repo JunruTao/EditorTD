@@ -14,7 +14,7 @@ float  BEVEL_DIST = 0.f;
 unsigned int INIT_WIN_WIDTH = 800;
 unsigned int INIT_WIN_HEIGHT = 600;
 unsigned int INIT_WIN_WIDTH_MIN = 400;
-unsigned int INIT_WIN_HEIGHT_MAX = 400;
+unsigned int INIT_WIN_HEIGHT_MIN = 400;
 
 sf::Color Col_SREEN_BACKGROUND = { 40,  40,  40,  255 };
 sf::Color Col_WIDGET_BACKGROUND = { 70,  70,  70,  255 };

@@ -1,5 +1,5 @@
 #include "EditorTD/util_system.h"
-
+#include <math.h>
 
 void ETD_MakeTransparentWindow(sf::RenderWindow* window, bool toggle, UINT8 alpha) 
 {
@@ -45,8 +45,56 @@ sf::RenderWindow* ETD::InitWindow()
 	return window;
 }
 
-void ETD::FreeWindow(sf::RenderWindow* &hwnd) 
+void ETD::FreeWindow(hRenderWindow &hwnd)
 {
 	std::cout << "[ETD::FreeWindow] delete window on heap at:0x" << (void*)(hwnd) << std::endl;
 	delete hwnd;
+}
+
+
+void ETD::Window::Resizing(hRenderWindow window, hEvent h_event)
+{
+	if (h_event->type == sf::Event::Resized)
+	{
+		// update the view to the new size of the window
+		auto now_size = window->getSize();
+		if ((int)now_size.x <= INIT_WIN_WIDTH_MIN || (int)now_size.y <= INIT_WIN_HEIGHT_MIN) {
+
+			now_size.x = (unsigned int)std::max((int)now_size.x, (int)INIT_WIN_WIDTH_MIN);
+			now_size.y = (unsigned int)std::max((int)now_size.y, (int)INIT_WIN_HEIGHT_MIN);
+			window->setSize(now_size);
+		}
+
+		sf::FloatRect visibleArea(0, 0, (float)h_event->size.width, (float)h_event->size.height);
+		window->setView(sf::View(visibleArea));
+	}
+}
+
+
+
+//This is a global variable that should be include in widgets.
+int ETD::Glob::ActiveWidget = -1;
+
+void ETD::WindowLoop(hRenderWindow window)
+{
+	ETD::User_InitField(window);
+	while (window->isOpen())
+	{
+		// Process events
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			// Close window: exit
+			if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
+			{
+				window->close();
+				break;
+			}
+
+			//Process Users's event
+			ETD::User_ProcessEvents(&event);
+			ETD::Window::Resizing(window, &event);
+		}
+		ETD::User_Drawing(window);
+	}
 }

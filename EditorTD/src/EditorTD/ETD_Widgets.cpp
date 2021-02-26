@@ -5,11 +5,13 @@
 using namespace ETD;
 
 sf::RenderTexture Widget::_buffer_renderer;
-short Widget::_id = 0;
+int Widget::_widget_count = 0;
 
 void Widget::Init(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool has_buffer=false)
 {
-	_id++;
+	_widget_count++;
+	_id = _widget_count;
+	_active = false;
 	_hwnd = hwnd;
 	_bound = bound;
 	_bound.left += WIDGETS_GAP;
@@ -41,7 +43,6 @@ Widget::Widget() {}
 
 Widget::~Widget() 
 {
-	_id--;
 }
 
 void Widget::Update(sf::Event* event) 
@@ -150,6 +151,16 @@ sf::Vector2f Widget::GetClientPivot_f() const
 {
 	return sf::Vector2f((float)_mask.left, (float)_mask.top);
 }
+
+
+int Widget::GetID() { return _id; }
+void Widget::Activate() { this->_active = true; }
+void Widget::Deactivate() { this->_active = false; }
+bool Widget::isInbound(sf::Vector2f point) 
+{
+	return _bound.contains(point);
+}
+
 
 /// <summary>
 /// Functions for children to overload:

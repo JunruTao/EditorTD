@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 
 #endif

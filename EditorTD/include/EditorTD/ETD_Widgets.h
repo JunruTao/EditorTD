@@ -13,6 +13,11 @@ namespace ETD
 		~Widget();
 		void Draw() override;
 		void Update(sf::Event* event);
+
+		int GetID();
+		void Activate();
+		void Deactivate();
+		bool isInbound(sf::Vector2f location);
 	protected:
 		void Resize(sf::Event* event); //update _bound
 		void UpdateMask(); //using _bound to shrink and transform _sprite
@@ -46,8 +51,11 @@ namespace ETD
 		//window handle
 		sf::RenderWindow* _hwnd;
 		
+		int _id;
+		bool _active;
+
 		//object id
-		static short _id;
+		static int _widget_count;
 		static sf::RenderTexture _buffer_renderer;
 	};
 }
