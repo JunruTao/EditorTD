@@ -6,9 +6,7 @@
 #include "EditorTD/util_system.h"
 #include "EditorTD/ETD_Gui.h"
 
-typedef std::vector<std::unique_ptr<ETD::Widget>> Widget_Ptr_List;
-typedef std::unique_ptr<ETD::Widget> Widget_Ptr;
-
-extern Widget_Ptr_List widgets;
+__USER_VAR__
+ETD::Widget_Ptr_List widgets;
 
 #endif

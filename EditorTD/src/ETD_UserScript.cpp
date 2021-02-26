@@ -1,6 +1,6 @@
 #include "ETD_UserScript.h"
 
-Widget_Ptr_List widgets;
+ETD::Widget_Ptr_List widgets;
 
 void ETD::User_InitField(hRenderWindow window)
 {

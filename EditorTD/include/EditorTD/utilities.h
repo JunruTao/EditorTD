@@ -9,4 +9,10 @@
 #include <memory>
 
 
+namespace ETD
+{
+	typedef std::vector<std::unique_ptr<ETD::Widget>> Widget_Ptr_List;
+	typedef std::unique_ptr<ETD::Widget> Widget_Ptr;
+}
+
 #endif

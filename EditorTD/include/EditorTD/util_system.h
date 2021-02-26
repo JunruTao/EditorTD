@@ -8,6 +8,8 @@
 //by Hapax November 16, 2014, 02:35:09 am
 extern void ETD_MakeTransparentWindow(sf::RenderWindow* window, bool toggle, UINT8 alpha);
 
+#define __USER_VAR__ extern
+
 namespace ETD 
 {
 	//ETD custrom typedef
