@@ -7,9 +7,6 @@
 #include "EditorTD/ETD_Gui.h"
 
 __USER_VAR__
-ETD::Widget_Ptr_List widgets;
-
-__USER_VAR__
-std::unique_ptr<ETD::UI::WindowLayout> layout;
+ETD::UI::WindowLayout_Ptr layout;
 
 #endif

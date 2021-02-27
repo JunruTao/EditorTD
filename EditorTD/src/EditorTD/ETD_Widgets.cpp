@@ -33,9 +33,11 @@ void Widget::Init(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool has_b
 	ConstructOutline();
 }
 
-Widget::Widget(sf::RenderWindow* hwnd, const sf::FloatRect& bound) 
+Widget::Widget(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool hasParent)
+	:_parented(hasParent)
 {
 	this->Init(hwnd, bound);
+	
 }
 
 //Constructor for child object
@@ -47,9 +49,12 @@ Widget::~Widget()
 
 void Widget::Update(sf::Event* event) 
 {
-	if (event->type == sf::Event::Resized) 
+	if (!_parented) 
 	{
-		Resize(event);
+		if (event->type == sf::Event::Resized)
+		{
+			Resize(event);
+		}
 	}
 	this->UserUpdate(event);
 	CacheTexture();
@@ -72,6 +77,15 @@ void Widget::Resize(sf::Event* event)
 	CacheTexture();
 
 	_winSize = new_win_size;
+}
+
+//the public resizing
+void Widget::Resize(sf::FloatRect new_frect) 
+{
+	_bound.left = new_frect.left + WIDGETS_GAP;
+	_bound.top = new_frect.top + WIDGETS_GAP;
+	_bound.width = new_frect.width - WIDGETS_GAP * 2;
+	_bound.height = new_frect.height -  WIDGETS_GAP * 2;
 }
 
 void Widget::UpdateMask() 

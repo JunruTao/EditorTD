@@ -8,7 +8,7 @@ namespace ETD
 	class Widget : public Drawable
 	{
 	public:
-		Widget(sf::RenderWindow* hwnd, const sf::FloatRect& bound);
+		Widget(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool hasParent=false);
 		Widget();
 		~Widget();
 		void Draw() override;
@@ -18,6 +18,7 @@ namespace ETD
 		void Activate();
 		void Deactivate();
 		bool isInbound(sf::Vector2f location);
+		void Resize(sf::FloatRect new_frect);
 	protected:
 		void Resize(sf::Event* event); //update _bound
 		void UpdateMask(); //using _bound to shrink and transform _sprite
@@ -53,7 +54,7 @@ namespace ETD
 		
 		int _id;
 		bool _active;
-
+		bool _parented;
 		//object id
 		static int _widget_count;
 		static sf::RenderTexture _buffer_renderer;

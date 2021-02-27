@@ -1,10 +1,10 @@
 #include "EditorTD/ETD_EditorWidget.h"
 #include "EditorTD/config.h"
 #include <cmath>
-ETD::Widgets::TextEditor::TextEditor(sf::RenderWindow* hwnd, const sf::FloatRect& bound)
+ETD::Widgets::TextEditor::TextEditor(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool hasParent)
 {
 	this->Init(hwnd, bound, true);
-
+	this->_parented = hasParent;
 	_fontlib = new ETD::Util::FontLib();
 	_text_string = sf::String("<function decriptions>");
 

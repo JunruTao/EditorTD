@@ -8,6 +8,6 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-
+#define ___ERROR_MESSAGE_FEILD___  //
 
 #endif

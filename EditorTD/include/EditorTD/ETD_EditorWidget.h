@@ -27,7 +27,7 @@ namespace ETD
 		class TextEditor : public Widget
 		{
 		public:
-			TextEditor(sf::RenderWindow* hwnd, const sf::FloatRect& bound);
+			TextEditor(sf::RenderWindow* hwnd, const sf::FloatRect& bound, bool hasParent=false);
 			~TextEditor() {};
 		protected:
 			void ExtraDraw();
