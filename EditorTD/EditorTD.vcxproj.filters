@@ -31,6 +31,12 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{00bba0d6-1332-4586-890f-c1af1349880e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\layout">
+      <UniqueIdentifier>{d1d3a066-68ff-42bc-a332-9efb1e8e3fdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\layout">
+      <UniqueIdentifier>{49a88ee2-4aa5-4ee0-8d14-d7da916b4fa4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\EditorTD\utilities.h">
@@ -60,6 +66,9 @@
     <ClInclude Include="src\ETD_UserScript.h">
       <Filter>Source Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="include\EditorTD\ETD_Layout.h">
+      <Filter>Header Files\layout</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorTD\EditorTD.cpp">
@@ -82,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="src\ETD_UserScript.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorTD\ETD_Layout.cpp">
+      <Filter>Source Files\layout</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

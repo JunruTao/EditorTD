@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="include\EditorTD\ETD_Gui.h" />
     <ClInclude Include="include\EditorTD\ETD_EditorWidget.h" />
+    <ClInclude Include="include\EditorTD\ETD_Layout.h" />
     <ClInclude Include="include\EditorTD\ETD_Widgets.h" />
     <ClInclude Include="include\EditorTD\config.h" />
     <ClInclude Include="include\EditorTD\drawable.h" />
@@ -32,6 +33,7 @@
   <ItemGroup>
     <ClCompile Include="src\EditorTD\config.cpp" />
     <ClCompile Include="src\EditorTD\ETD_EditorWidget.cpp" />
+    <ClCompile Include="src\EditorTD\ETD_Layout.cpp" />
     <ClCompile Include="src\EditorTD\ETD_Widgets.cpp" />
     <ClCompile Include="src\EditorTD\EditorTD.cpp" />
     <ClCompile Include="src\EditorTD\util_font_lib.cpp" />

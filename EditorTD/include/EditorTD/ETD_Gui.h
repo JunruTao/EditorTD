@@ -7,5 +7,4 @@
 #include "EditorTD/util_font_lib.h"
 #include "EditorTD/ETD_Layout.h"
 
-
 #endif

@@ -7,9 +7,13 @@
 #include "EditorTD/ETD_Widgets.h"
 #include "EditorTD/ETD_EditorWidget.h"
 #include "EditorTD/util_font_lib.h"
+#include "EditorTD/ETD_Gui.h"
 
 namespace ETD 
 {
+	typedef std::vector<std::unique_ptr<ETD::Widget>> Widget_Ptr_List;
+	typedef std::unique_ptr<ETD::Widget> Widget_Ptr;
+
 	namespace UI 
 	{
 		class Layout
@@ -18,26 +22,42 @@ namespace ETD
 			Layout();
 			virtual ~Layout();
 			//public functions
-			void Update();
 			void DrawLayout();
-
-			//need to think about it... the logic.
-			void AddLayout(std::unique_ptr<Layout> layout);
+			virtual void Update(hEvent h_event, sf::IntRect rect = { 0,0,0,0 });
 
 		protected:
+			virtual void SelfDraw();
 
-			std::unique_ptr<Layout> _internal_layouts;
+			hRenderWindow _hwnd;
+			sf::IntRect _layout_rect;
+			std::vector<std::unique_ptr<Layout>> _internal_layouts;
+			
+		};
+
+
+		class WindowLayout : public Layout 
+		{
+		public:
+			WindowLayout(hRenderWindow window);
+			~WindowLayout();
+			void Update(hEvent h_event, sf::IntRect rect = {0,0,0,0});
+			void AddLayout(std::unique_ptr<Layout> layout);
+		private:
+			sf::IntRect getWindowSize();
+			void SelfDraw();
 		};
 
 
 		class Column_Layout : public Layout
 		{
 		public:
-			Column_Layout(size_t columns);
-			~Column_Layout();
-
+			Column_Layout(size_t columns) {};
+			~Column_Layout() {};
+			void Update(hEvent h_event, sf::IntRect rect) {};
+		private:
+			void SelfDraw() {};
 		protected:
-			std::vector<std::unique_ptr<ETD::Widget>> _widgets;
+			ETD::Widget_Ptr_List _widgets;
 		};
 	}
 }
