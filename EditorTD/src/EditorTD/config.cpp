@@ -19,7 +19,7 @@ unsigned int INIT_WIN_HEIGHT_MIN = 400;
 sf::Color Col_SREEN_BACKGROUND = { 40,  40,  40,  255 };
 sf::Color Col_WIDGET_BACKGROUND = { 70,  70,  70,  255 };
 sf::Color Col_WIDGET_BORDER = { 150, 150, 150, 255 };
-sf::Color Col_EDIT_TEXT = { 255, 0, 0, 255 };
+sf::Color Col_EDIT_TEXT = { 255, 255, 0, 255 };
 sf::Color Col_STATIC_TEXT = { 187, 187, 187, 255 };
 
 
